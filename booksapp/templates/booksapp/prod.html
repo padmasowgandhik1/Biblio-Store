@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prod</title>
+     {% load staticfiles %}
+</head>
+<body>
+<a href="{% url 'biblioapp:show_products' %}"> <img src="{% static 'temp_css\img\logo.jpg' %}" width="100px" height="100px" alt="image"> </a>
+
+ <table align="CENTER">
+
+     {% for p in prod %}
+     <tr><td><h1 align="CENTER">{{p.name}}</h1></td></tr>
+     <tr><td><img src="{{ p.pic.url }}" width="100px" height="200px" alt="image"></td></tr>
+     <tr><td>{{p.cost}}</td></tr>
+     <tr><td>{{p.status}}</td></tr>
+     <tr><td> <a href=""> Add To Cart </a></td></tr>
+     <tr><td><a href="{% url 'biblioapp:update_product' p.id %}">Edit</a> |  <a href="{% url 'biblioapp:delete_product' p.id %}">Delete</a></td></tr>
+
+
+      	{% endfor %}
+      </table>
+</body>
+</html>

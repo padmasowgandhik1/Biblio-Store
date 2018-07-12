@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>cart</title>
+        {% load staticfiles %}
+
+</head>
+<body>
+<a href="{% url 'biblioapp:show_products' %}"> <img src="{% static 'product_pic\logo.jpg' %}" width="100px" height="100px" alt="image"> </a>
+<h1 align="CENTER">MY CART</h1>
+ <table align="CENTER">
+      	{% for item in cart %}
+     <tr><td> {{item.product.name}} </td></tr>
+     <tr><td><img src="{{ item.product.pic.url }}" width="100px" height="200px" alt="image"></td></tr>
+     <tr><td>  {{item.product.cost}} </td></tr>
+     <tr><td> {{item.product.status}} </td></tr>
+     <tr><td> <a href="{% url 'biblioapp:cart_product_delete' item.id %}">Delete</a></td></tr>
+      	{% endfor %}
+      </table>
+
+     Total : {{total}}
+</body>
+</html>

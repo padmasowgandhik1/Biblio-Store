@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>product_form</title>
+    {% include 'booksapp/bootstrap.html' %}
+</head>
+<body>
+ <form action = "" method = "post">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <hr>
+        <input type="submit" class="btn btn-success" value = "Submit"/>
+        </form>
+</body>
+</html>

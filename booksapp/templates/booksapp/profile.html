@@ -1,0 +1,102 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>profile</title>
+        {% load staticfiles %}
+
+</head>
+<body>
+<a href="{% url 'biblioapp:show_products' %}"> <img src="{% static 'product_pic\logo.jpg' %}" width="100px" height="100px" alt="image"> </a>
+<h1 align="CENTER">MY PROFILE</h1>
+ <table align="CENTER">
+      	{% for r in prof %}
+     <tr><td>username : {{r.name}} </td></tr>
+     <tr><td>password : {{r.profilepassword}}</td></tr>
+     <tr><td>email :  {{r.email}} </td></tr>
+     <tr><td>phone : {{r.phone}} </td></tr>
+     <tr><td>address : {{r.address}} </td></tr>
+      	{% endfor %}
+      </table>
+</body>
+</html>  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Profile</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{% load staticfiles %}
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'temp_css/login_images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/login_vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/fonts/login_fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/login_vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/login_vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/login_vendor/animsition/css/animsition.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/login_vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/login_vendor/daterangepicker/daterangepicker.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/css/login_css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'temp_css/css/login_css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body color="#F8694A">
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" action = "" method = "post">
+                       {% csrf_token %}
+					<span class="login100-form-title">
+						MY PROFILE
+					</span>
+                            {% for r in prof %}
+                    <hr>
+                              <b> USERNAME :</b> {{r.name}}
+                    <hr>
+                              <b>  PROFILE-PASSWORD :</b> {{r.profilepassword}}
+                    <hr>
+                              <b>  E-mail :</b>  {{r.email}}
+                    <hr>
+                              <b> PHONE :</b> {{r.phone}}
+                    <hr>
+                               <b> ADDRESS :</b> {{r.address}}
+                    <hr>
+                            {% endfor %}
+					<hr>
+					<div class="pull-right">	<a href="{% url 'biblioapp:show_products' %}"><b> Continue Shopping </b></a> </div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/login_vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/login_vendor/animsition/js/animsition.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/login_vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'temp_css/login_vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/login_vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/login_vendor/daterangepicker/moment.min.js' %}"></script>
+	<script src="{% static 'temp_css/login_vendor/daterangepicker/daterangepicker.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/login_vendor/countdowntime/countdowntime.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'temp_css/js/login_js/main.js' %}"></script>
+
+</body>
+</html>
