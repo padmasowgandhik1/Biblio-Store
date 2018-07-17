@@ -19,6 +19,8 @@ class Products(models.Model):
     pic = models.ImageField(upload_to='product_pic',blank=True)
     cost = models.IntegerField()
     status = models.BooleanField(default=False)
+    about = models.CharField(max_length=500,default="Product Info Displayed Here !!", null=True)
+    qty = models.IntegerField(default=1, null=True)
     category = models.CharField(max_length=255,default = 'books')
     subcategory = models.CharField(max_length=255,default = 'books')
 
