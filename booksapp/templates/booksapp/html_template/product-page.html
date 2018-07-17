@@ -47,7 +47,7 @@
 					<h3><a href="">Login</a></h3>
 				</h1> -->
 
-				<div class="pull-right">
+
 					     <ul class="header-top-links">
 					<!--	<li><a href="#">Store</a></li>
 						<li><a href="#">Newsletter</a></li>
@@ -68,15 +68,23 @@
 								<li><a href="#">EUR (€)</a></li>
 							</ul>
 						</li> -->
-							 {% if not request.user.is_authenticated %}
-							 <li>	<h3><a href="{% url 'biblioapp:log_in' %}">Login</a></h3></li><li> <h3><a href="{% url 'biblioapp:sign_up' %}">SignUp</a></h3></li>
+								 {% if not request.user.is_authenticated %}
+							<div class="pull-right">
+							 <li><h3>  <a href="{% url 'biblioapp:log_in' %}">Login</a> / <a href="{% url 'biblioapp:sign_up' %}">SignUp</a>  </h3></li>
+							 	</div>
+							  {% else %}
+							 	<div class="pull-right">
+							  <li>	<h3><a href="{% url 'biblioapp:log_out' %}"> Log Out </a></h3></li>
+							  	</div>
 							 {% endif %}
 							 {% if request.user.is_authenticated%}
+							 	<div class="pull-left">
 							 <li><h4>Welcome {{ request.user.username }}!</h4></li>
+							 	</div>
 							 {% endif %}
 						 </ul>
 
-				</div>
+
 			</div>
 		</div>
 		<!-- /top Header -->
@@ -212,7 +220,7 @@
 		<div class="container">
 			<div id="responsive-nav">
 				<!-- category nav -->
-				<div class="category-nav show-on-click">
+			<div class="category-nav show-on-click">
 					<span class="category-header">Shop By Category <i class="fa fa-list"></i></span>
 					<ul class="category-list">
 						<li class="dropdown side-dropdown">
@@ -261,7 +269,7 @@
 									<div class="col-md-12">
 										<hr>
 										<a class="banner banner-1" href="#">
-											<img src="{% static 'temp_css/img/banner05.jpg' %}" alt="">
+											<img src="{% static 'temp_css/img/library.jpg' %}" alt="" width="50px" height="250px">
 											<div class="banner-caption text-center">
 												<h2 class="white-color">NEW COLLECTION</h2>
 											</div>
@@ -287,18 +295,19 @@
 										<hr>
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">MARKERS ( yet not included)</h3></li>
-												 <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Black </a></li>
-											    <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Blue </a></li>
+												<h3 class="list-links-title">MARKERS</h3></li>
+												 <li><a href="{% url 'biblioapp:subcategory_searched_product' 'marker black' %}"> Black </a></li>
+											    <li><a href="{% url 'biblioapp:subcategory_searched_product' 'marker red' %}"> Red </a></li>
 										</ul>
 										<hr class="hidden-md hidden-lg">
 									</div>
 									<div class="col-md-4">
-										<ul class="list-links">
+									<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">HIGHLIGHTERS ( yet not included)</h3></li>
-											    <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Pink </a></li>
-											    <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Orange </a></li>
+												<h3 class="list-links-title">HIGHLIGHTERS</h3></li>
+											    <li><a href="{% url 'biblioapp:subcategory_searched_product' 'highlighter pink' %}"> Pink </a></li>
+											    <li><a href="{% url 'biblioapp:subcategory_searched_product' 'highlighters' %}"> Normal </a></li>
+											     <li><a href="{% url 'biblioapp:subcategory_searched_product' 'highlighter orange' %}"> Orange </a></li>
 										</ul>
 										<hr>
 										<ul class="list-links">
@@ -309,7 +318,7 @@
 									</div>
 									<div class="col-md-4 hidden-sm hidden-xs">
 										<a class="banner banner-2" href="#">
-											<img src="{% static 'temp_css/img/banner04.jpg' %}" alt="">
+											<img src="{% static 'temp_css/img/highlight.jpg' %}" alt="" height="200px">
 											<div class="banner-caption">
 												<h3 class="white-color">NEW<br>COLLECTION</h3>
 											</div>
@@ -318,10 +327,10 @@
 								</div>
 							</div>
 						</li>
-						<li><a href="{% url 'biblioapp:category_searched_product' 'designer pen' %}">Plasters ( yet not included)</a></li>
-						<li><a href="{% url 'biblioapp:category_searched_product' 'designer pen' %}">Adhesives ( yet not included)</a></li>
+						<li><a href="{% url 'biblioapp:category_searched_product' 'plasters' %}">Plasters</a></li>
+						<li><a href="{% url 'biblioapp:category_searched_product' 'adhesives' %}">Adhesives</a></li>
 						<li><a href="{% url 'biblioapp:category_searched_product' 'stapler' %}">Staplers</a></li>
-						<li><a href="{% url 'biblioapp:category_searched_product' 'designer pen' %}">Covers ( yet not included)</a></li>
+						<li><a href="{% url 'biblioapp:category_searched_product' 'covers' %}">Covers</a></li>
 
 						<li class="dropdown side-dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> Pencils <i class="fa fa-angle-right"></i></a>
@@ -330,13 +339,15 @@
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">GENERAL ( yet not included)</h3></li>
+												<h3 class="list-links-title" ><a href="{% url 'biblioapp:subcategory_searched_product' 'general pencils' %}">GENERAL</a></h3></li>
 
 										</ul>
 										<hr>
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">LEAD PENCILS ( yet not included)</h3></li>
+												<h3 class="list-links-title"  ><a href="{% url 'biblioapp:subcategory_searched_product' 'lead pencils' %}" >LEAD PENCILS</a></h3></li>
+
+
 
 										</ul>
 										<hr class="hidden-md hidden-lg">
@@ -344,13 +355,13 @@
 									<div class="col-md-4">
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">COLOUR PENCILS( yet not included)</h3></li>
+												<h3 class="list-links-title" ><a  href="{% url 'biblioapp:subcategory_searched_product' 'colour pencils' %}" >COLOUR PENCILS</a></h3></li>
 
 										</ul>
 										<hr>
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">DESIGNER( yet not included)</h3></li>
+												<h3 class="list-links-title" ><a  href="{% url 'biblioapp:subcategory_searched_product' 'designer pencils' %}">DESIGNER</a></h3></li>
 
 										</ul>
 										<hr class="hidden-md hidden-lg">
@@ -411,7 +422,7 @@
 								</div>
 							</div>
 						</li>
-						<li class="dropdown mega-dropdown full-width"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pens <i class="fa fa-caret-down"></i></a>
+						<li class="dropdown side-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">Pens <i class="fa fa-angle-right"></i></a>
 							<div class="custom-menu">
 								<div class="row">
 									<div class="col-md-4">
@@ -426,18 +437,19 @@
 										<hr>
 										<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">MARKERS ( yet not included)</h3></li>
-												 <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Black </a></li>
-											    <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Blue </a></li>
+												<h3 class="list-links-title">MARKERS</h3></li>
+												 <li><a href="{% url 'biblioapp:subcategory_searched_product' 'marker black' %}"> Black </a></li>
+											    <li><a href="{% url 'biblioapp:subcategory_searched_product' 'marker red' %}"> Red </a></li>
 										</ul>
 										<hr class="hidden-md hidden-lg">
 									</div>
 									<div class="col-md-4">
-										<ul class="list-links">
+									<ul class="list-links">
 											<li>
-												<h3 class="list-links-title">HIGHLIGHTERS ( yet not included)</h3></li>
-											    <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Pink </a></li>
-											    <li><a href="{% url 'biblioapp:subcategory_searched_product' '.' %}"> Orange </a></li>
+												<h3 class="list-links-title">HIGHLIGHTERS</h3></li>
+											    <li><a href="{% url 'biblioapp:subcategory_searched_product' 'highlighter pink' %}"> Pink </a></li>
+											    <li><a href="{% url 'biblioapp:subcategory_searched_product' 'highlighters' %}"> Normal </a></li>
+											     <li><a href="{% url 'biblioapp:subcategory_searched_product' 'highlighter orange' %}"> Orange </a></li>
 										</ul>
 										<hr>
 										<ul class="list-links">
@@ -446,18 +458,26 @@
 												<li><a href="{% url 'biblioapp:subcategory_searched_product' 'designer pen' %}"> Designer blue </a></li>
 										</ul>
 									</div>
+									<div class="col-md-4 hidden-sm hidden-xs">
+										<a class="banner banner-2" href="#">
+											<img src="{% static 'temp_css/img/highlight.jpg' %}" alt="" height="200px">
+											<div class="banner-caption">
+												<h3 class="white-color">NEW<br>COLLECTION</h3>
+											</div>
+										</a>
+									</div>
 								</div>
 							</div>
 						</li>
 						<li><a href="{% url 'biblioapp:show_products' %}">View All</a></li>
 
-							<li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">HELP <i class="fa fa-caret-down"></i></a>
+						<li class="dropdown default-dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">HELP <i class="fa fa-caret-down"></i></a>
 							<ul class="custom-menu">
 								<li><a href="{% url 'biblioapp:show_products' %}">Home</a></li>
-								<li><a href="#">About us(not attached yet)</a></li>
-								<li><a href="#">contact us(not attached yet)</a></li>
-								<li><a href="#">Terms & conditions(not attached yet)</a></li>
-								<li><a href="#">Privacy policy(not attached yet)</a></li>
+								<li><a href="#">About us</a></li>
+								<li><a href="#">contact us</a></li>
+								<li><a href="#">Terms & conditions</a></li>
+								<li><a href="#">Privacy policy</a></li>
 								<li><a href="{% url 'biblioapp:log_out' %}">Log out</a></li>
 							</ul>
 						</li>
@@ -531,7 +551,7 @@
 								<span class="sale">-20%</span>
 							</div>  -->
 							<h2 class="product-name">{{r.name}}</h2>
-							<h3 class="product-price">{{r.cost}}</h3>
+							<h3 class="product-price">{{r.cost}} Rs</h3>
 						<!--	<div>
 								<div class="product-rating">
 									<i class="fa fa-star"></i>
@@ -545,8 +565,7 @@
 							<p><strong>Availability:</strong> {{r.status}}</p>
 						<!--	<p><strong>Brand:</strong> E-SHOP</p> -->
 
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-								dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							<p>{{r.about}}</p>
 
 						<!--	<div class="product-options">
 								<ul class="size-option">
