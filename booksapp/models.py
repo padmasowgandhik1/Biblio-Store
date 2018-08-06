@@ -21,6 +21,7 @@ class Products(models.Model):
     status = models.BooleanField(default=False)
     about = models.CharField(max_length=500,default="Product Info Displayed Here !!", null=True)
     qty = models.IntegerField(default=1, null=True)
+    is_added = models.BooleanField(default=False)
     category = models.CharField(max_length=255,default = 'books')
     subcategory = models.CharField(max_length=255,default = 'books')
 
@@ -39,6 +40,7 @@ class Cart(models.Model):
         return self.name
 
 class OrderItem(models.Model):
+     qty = models.IntegerField(default=1, null=True)
      product = models.OneToOneField(Products,on_delete=models.SET_NULL,null=True)
      is_orderd = models.BooleanField(default=False)
      date_added = models.DateTimeField(auto_now=True)
@@ -59,13 +61,12 @@ class Order(models.Model):
         return self.items.all()
 
     def get_cart_total(self):
-        return sum([item.product.cost for item in self.items.all() if(item.product)])
+        return sum([item.product.cost*item.qty for item in self.items.all() if(item.product)])
 
     def __str__(self):
         return '{0}-{1}'.format(self.owner,self.ref_code)
 
 class Ratings_Reviews(models.Model):
-    #product = models.ForeignKey(Products,on_delete=models.SET_NULL,null=True)
     p_id = models.IntegerField()
     u_id = models.IntegerField()
     rr_uname = models.CharField(max_length=255)
@@ -75,4 +76,15 @@ class Ratings_Reviews(models.Model):
     def __str__(self):
         return self.rr_uname
 
+class My_orders(models.Model):
+    name = models.CharField(max_length=255,default="abc")
+    pic = models.ImageField(upload_to='product_pic', blank=True)
+    qty = models.IntegerField(default=1, null=True)
+    cost = models.IntegerField(default=1, null=True)
+    date_ordered = models.DateTimeField(null=True)
+
+    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.name
 
